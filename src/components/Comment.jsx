@@ -1,7 +1,7 @@
 import Btns from "./comment/Btns";
 import Contents from "./comment/Contents";
 
-function Comment({ data }) {
+function Comment({ data, handleStatus, suppression }) {
   return (
     <div
       style={{
@@ -14,7 +14,11 @@ function Comment({ data }) {
       }}
     >
       <Contents data={data} />
-      <Btns data={data} />
+      <Btns
+        data={data}
+        handleStatus={handleStatus}
+        handleDelete={suppression}
+      />
     </div>
   );
 }

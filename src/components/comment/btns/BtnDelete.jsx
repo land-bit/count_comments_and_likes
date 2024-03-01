@@ -1,8 +1,8 @@
 import btndelete from "../../../assets/icons/delete.svg";
 
-export default function BtnDelete() {
+export default function BtnDelete({ handleDelete }) {
   return (
-    <button>
+    <button onClick={handleDelete}>
       <img src={btndelete} alt="" />
     </button>
   );

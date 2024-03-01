@@ -1,23 +1,27 @@
+import { useState } from "react";
 import Comment from "./components/Comment";
 import EnTete from "./components/EnTete";
 
 export default function App() {
   const exempleDB = [
     {
+      id: 1,
       nom: "Dupont",
       postNom: "Jean",
       comment:
         "C'est un excellent produit ! J'ai été agréablement surpris par la qualité et le design. Le service client est également très réactif et professionnel. Je recommande vivement ce produit à tous ceux qui sont intéressés.",
-      status: false,
+      status: true,
     },
     {
+      id: 2,
       nom: "Martin",
       postNom: "Pierre",
       comment:
         "Service client très réactif. J'ai eu un petit souci avec ma commande, mais ils ont répondu rapidement et ont résolu mon problème en un rien de temps. Je suis très satisfait de leur service.",
-      status: false,
+      status: true,
     },
     {
+      id: 3,
       nom: "Leroy",
       postNom: "Julie",
       comment:
@@ -25,6 +29,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 4,
       nom: "Moreau",
       postNom: "Sophie",
       comment:
@@ -32,6 +37,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 5,
       nom: "Petit",
       postNom: "Luc",
       comment:
@@ -39,6 +45,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 6,
       nom: "Garnier",
       postNom: "François",
       comment:
@@ -46,6 +53,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 7,
       nom: "Lefevre",
       postNom: "Martine",
       comment:
@@ -53,6 +61,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 8,
       nom: "Roux",
       postNom: "Nicolas",
       comment:
@@ -60,6 +69,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 9,
       nom: "Vincent",
       postNom: "Marie",
       comment:
@@ -67,6 +77,7 @@ export default function App() {
       status: false,
     },
     {
+      id: 10,
       nom: "Lemoine",
       postNom: "Claude",
       comment:
@@ -74,6 +85,18 @@ export default function App() {
       status: false,
     },
   ];
+  const [data, setData] = useState([...exempleDB]);
+  const likes = data.filter((e) => (e.status == true ? e : null));
+
+  function handleDataLike(i) {
+    setData(
+      data.map((e) => (e.id === i ? { ...e, status: !e.status } : { ...e }))
+    );
+  }
+
+  function handleDataDelete(i) {
+    setData(data.filter((e) => e.id !== i));
+  }
 
   return (
     <div
@@ -82,9 +105,14 @@ export default function App() {
         padding: "8%",
       }}
     >
-      <EnTete />
-      {exempleDB.map((e, i) => (
-        <Comment key={i} data={e} />
+      <EnTete nbr={data.length} like={likes.length} />
+      {data.map((e) => (
+        <Comment
+          key={e.id}
+          data={e}
+          handleStatus={() => handleDataLike(e.id)}
+          suppression={() => handleDataDelete(e.id)}
+        />
       ))}
     </div>
   );
