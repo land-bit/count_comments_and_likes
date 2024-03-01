@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Comment from "./components/Comment";
 import EnTete from "./components/EnTete";
+import "./App.css";
 
 export default function App() {
   const exempleDB = [
@@ -18,7 +19,7 @@ export default function App() {
       postNom: "Pierre",
       comment:
         "Service client très réactif. J'ai eu un petit souci avec ma commande, mais ils ont répondu rapidement et ont résolu mon problème en un rien de temps. Je suis très satisfait de leur service.",
-      status: true,
+      status: false,
     },
     {
       id: 3,
@@ -26,7 +27,7 @@ export default function App() {
       postNom: "Julie",
       comment:
         "Livraison rapide, je suis satisfaite. Le produit est arrivé en parfait état et correspond exactement à la description. Je suis très contente de mon achat et je vais certainement commander à nouveau sur ce site.",
-      status: false,
+      status: true,
     },
     {
       id: 4,
@@ -34,7 +35,7 @@ export default function App() {
       postNom: "Sophie",
       comment:
         "Je recommande ce site à mes amis. Non seulement ils ont une grande variété de produits, mais leur service client est également excellent. J'ai eu une expérience très positive avec eux.",
-      status: false,
+      status: true,
     },
     {
       id: 5,
@@ -85,6 +86,7 @@ export default function App() {
       status: false,
     },
   ];
+
   const [data, setData] = useState([...exempleDB]);
   const likes = data.filter((e) => (e.status == true ? e : null));
 
